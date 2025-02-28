@@ -1,0 +1,48 @@
+class Garaje
+{
+    private Coche cocheActual;
+    private string averiaAsociada;
+    private int cochesAtendidos;
+
+    public Garaje()
+    {
+        cocheActual = null;
+        averiaAsociada = "";
+        cochesAtendidos = 0;
+    }
+
+    public bool AceptarCoche(Coche coche, string averia)
+    {
+        if (cocheActual != null)
+        {
+            Console.WriteLine("El garaje ya está ocupado.");
+            return false;
+        }
+
+        cocheActual = coche;
+        averiaAsociada = averia;
+        cochesAtendidos++;
+        Console.WriteLine($"Coche {coche.GetMarca()} {coche.GetModelo()} aceptado para reparar {averia}");
+        
+        double costo = new Random().Next(50, 500); // Simula un costo aleatorio de reparación
+        coche.AcumularAveria(costo);
+        
+        if (averia == "aceite")
+        {
+            coche.GetMotor().SetLitrosDeAceite(coche.GetMotor().GetLitrosDeAceite() + 10);
+        }
+
+        return true;
+    }
+
+    public void DevolverCoche()
+    {
+        if (cocheActual != null)
+        {
+            Console.WriteLine($"Coche {cocheActual.GetMarca()} {cocheActual.GetModelo()} reparado y devuelto.");
+            cocheActual = null;
+            averiaAsociada = "";
+        }
+    }
+}
+
