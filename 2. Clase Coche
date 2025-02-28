@@ -1,0 +1,22 @@
+class Coche
+{
+    private Motor motor;
+    private string marca;
+    private string modelo;
+    private double precioAverias;
+
+    public Coche(string marca, string modelo, int potenciaMotor)
+    {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.precioAverias = 0;
+        this.motor = new Motor(potenciaMotor);
+    }
+
+    public string GetMarca() => marca;
+    public string GetModelo() => modelo;
+    public double GetPrecioAverias() => precioAverias;
+    public Motor GetMotor() => motor;
+
+    public void AcumularAveria(double costo) => precioAverias += costo;
+}
