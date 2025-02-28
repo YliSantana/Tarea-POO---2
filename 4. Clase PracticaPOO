@@ -1,0 +1,32 @@
+using System;
+
+class PracticaPOO
+{
+    static void Main()
+    {
+        Garaje garaje = new Garaje();
+        Coche coche1 = new Coche("Toyota", "Corolla", 150);
+        Coche coche2 = new Coche("Honda", "Civic", 140);
+
+        string[] averias = { "aceite", "frenos", "motor", "neumáticos" };
+        Random random = new Random();
+
+        // Cada coche entra dos veces al garaje
+        for (int i = 0; i < 2; i++)
+        {
+            string averia = averias[random.Next(averias.Length)];
+            if (garaje.AceptarCoche(coche1, averia))
+                garaje.DevolverCoche();
+
+            averia = averias[random.Next(averias.Length)];
+            if (garaje.AceptarCoche(coche2, averia))
+                garaje.DevolverCoche();
+        }
+
+        // Mostrar información final de los coches
+        Console.WriteLine("\nInformación Final de los Coches:");
+        Console.WriteLine($"Coche 1: {coche1.GetMarca()} {coche1.GetModelo()} - Gastos: ${coche1.GetPrecioAverias()}, Aceite: {coche1.GetMotor().GetLitrosDeAceite()}L");
+        Console.WriteLine($"Coche 2: {coche2.GetMarca()} {coche2.GetModelo()} - Gastos: ${coche2.GetPrecioAverias()}, Aceite: {coche2.GetMotor().GetLitrosDeAceite()}L");
+    }
+}
+
